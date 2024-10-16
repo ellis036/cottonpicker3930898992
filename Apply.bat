@@ -358,11 +358,18 @@ for /f "tokens=1,2 delims==" %%a in ('wmic path Win32_PnPEntity get DeviceID /va
 )
 
 :: Create a scheduled task to run the script at system startup
-schtasks /create /tn "ForcePowerStates" /tr "\"%~dp0%~nx0\"" /sc onstart /ru SYSTEM /rl HIGHEST >nul 2>&1
+schtasks /create /tn "ForcePowerStates" /tr "%~dp0%~nx0" /sc onstart /ru SYSTEM /rl HIGHEST >nul 2>&1
+
 if %errorlevel% neq 0 (
     ECHO Failed to create scheduled task.
 ) else (
     ECHO Scheduled task created successfully.
+    
+    :: Open Task Scheduler
+    start taskschd.msc
+
+    :: Execute the batch script
+    call "%~dp0%~nx0"
 )
 
 :: Disable SysMain/Superfetch
