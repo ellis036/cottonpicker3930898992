@@ -1,16 +1,4 @@
 @echo off
-setlocal enabledelayedexpansion
-
-:: Check if script is running as Administrator
-net session >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Requesting administrative privileges...
-    :: Relaunch the script as administrator
-    powershell -Command "Start-Process '%~0' -Verb runAs"
-    exit /b
-)
-
-:: Now the script is running with Administrator privileges
 echo Script is running with elevated privileges.
 set "batchFile=%~f0"
 set "taskName=Run CPU MSR Script"
