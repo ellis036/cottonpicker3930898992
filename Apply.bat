@@ -10,13 +10,11 @@ if %ERRORLEVEL%==0 (
 )
 
 REM Create the scheduled task to run this script with highest privileges at startup
-echo Creating scheduled task "%taskName%"...
 schtasks /create /tn "%taskName%" /tr "\"%batchFile%\"" /sc onlogon /rl highest /f >nul 2>&1
 if %ERRORLEVEL%==0 (
     echo Task created successfully.
 ) else (
-    echo Failed to create the task. Exiting.
-    exit /b 1
+    
 )
 
 :RunScript
