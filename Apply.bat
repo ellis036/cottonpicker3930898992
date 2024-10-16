@@ -120,7 +120,7 @@ if exist "C:\Mystring.vbs" (
     echo Mystring.vbs created successfully.
 ) else (
     echo Failed to create Mystring.vbs.
-    pause
+    
 )
 
 :: Step 2: Create the Freemem.vbs file in C:\
@@ -133,7 +133,7 @@ if exist "C:\Freemem.vbs" (
     echo Freemem.vbs created successfully.
 ) else (
     echo Failed to create Freemem.vbs.
-    pause
+    
 )
 
 :: Step 3: Create a scheduled task to run Mystring.vbs every 1 minute with highest privileges
@@ -144,7 +144,7 @@ if %errorlevel% equ 0 (
     echo Mystring task created successfully.
 ) else (
     echo Failed to create Mystring task.
-    pause
+    
 )
 
 :: Step 4: Create a scheduled task to run Freemem.vbs every 1 minute with highest privileges
@@ -155,7 +155,7 @@ if %errorlevel% equ 0 (
     echo Freemem task created successfully.
 ) else (
     echo Failed to create Freemem task.
-    pause
+    
 )
 
 echo Both scripts have been created, and the scheduled tasks are set to run every minute with the highest privileges.
