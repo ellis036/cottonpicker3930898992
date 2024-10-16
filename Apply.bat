@@ -1,4 +1,17 @@
 @echo off
+setlocal enabledelayedexpansion
+
+:: Check if script is running as Administrator
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Requesting administrative privileges...
+    :: Relaunch the script as administrator
+    powershell -Command "Start-Process '%~0' -Verb runAs"
+    exit /b
+)
+
+:: Now the script is running with Administrator privileges
+echo Script is running with elevated privileges.
 set "batchFile=%~f0"
 set "taskName=Run CPU MSR Script"
 
@@ -348,10 +361,6 @@ ECHO Power settings applied.
 
 setlocal enabledelayedexpansion
 
-:: Set up log file
-set logFile=%~dp0debug.log
-echo Script started on %date% %time% > "%logFile%"
-
 :: Check if running as administrator
 openfiles >nul 2>&1
 if %errorlevel% neq 0 (
@@ -363,7 +372,6 @@ if %errorlevel% neq 0 (
 :: Set all PCI/PCIe devices to D0 state
 ECHO Enumerating devices...
 echo Enumerating devices... >> "%logFile%"
-
 for /f "tokens=1,2 delims==" %%a in ('wmic path Win32_PnPEntity get DeviceID /value') do (
     if not "%%a"=="" (
         set "dev=%%a"
@@ -384,7 +392,6 @@ for /f "tokens=1,2 delims==" %%a in ('wmic path Win32_PnPEntity get DeviceID /va
     )
 )
 
-:: Create a scheduled task to run the script at system startup
 echo Creating scheduled task... >> "%logFile%"
 schtasks /create /tn "ForcePowerStates" /tr "\"%~dp0%~nx0\"" /sc onstart /ru SYSTEM /rl HIGHEST >> "%logFile%" 2>&1
 
@@ -401,8 +408,6 @@ if %errorlevel% neq 0 (
 )
 
 echo Script finished on %date% %time% >> "%logFile%"
-endlocal
-
 
 :: Disable SysMain/Superfetch
 ECHO Disabling SysMain/Superfetch...
