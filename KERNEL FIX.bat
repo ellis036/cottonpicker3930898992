@@ -67,4 +67,6 @@ Reg.exe add \"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel\" /v 
 Reg.exe add \"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel\" /v \"CpuThrottle\" /t REG_DWORD /d \"0\" /f & 
 Reg.exe add \"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel\" /v \"ProcessorPerformanceEnableCoreParking\" /t REG_DWORD /d \"0\" /f & 
 Reg.exe add \"HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Kernel\" /v \"ProcessorPerformanceCoreParkingMinCores\" /t REG_DWORD /d \"100\" /f" >nul 2>&1
-pause
+
+
+powershell -Command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Applied All Tweaks - Thanks for your Purchase.', 'Delay Destroyer', 'Ok', [System.Windows.Forms.MessageBoxIcon]::Information);}"
