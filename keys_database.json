@@ -1,13 +1,3 @@
 {
-  "Keys": [
-    {
-      "Key": "76AE-3D2A-9383-A83A-88DF",
-      "HWID": "5EF97669958DA2D8",
-      "ExpirationDate": "2026-10-01T14:02:37.1067809+01:00",
-      "Features": "FULL",
-      "CustomerEmail": "",
-      "CreatedDate": "2025-10-01T14:02:41.2587487+01:00",
-      "IsActive": true
-    }
-  ]
+  "Keys": []
 }
