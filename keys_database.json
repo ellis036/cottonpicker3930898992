@@ -8,6 +8,15 @@
       "CustomerEmail": "",
       "CreatedDate": "2025-10-01T12:26:37.553927+01:00",
       "IsActive": true
+    },
+    {
+      "Key": "6D5D-4101-C954-A413-88DE",
+      "HWID": "C1A734E8CE51BDA3",
+      "ExpirationDate": "2025-10-31T13:48:01.9204719+00:00",
+      "Features": "FULL",
+      "CustomerEmail": "",
+      "CreatedDate": "2025-10-01T13:48:10.4322204+01:00",
+      "IsActive": true
     }
   ]
 }
